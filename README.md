@@ -55,3 +55,5 @@
 | buy              | reference  | foreign_key: true |
 
 - belongs_to :buy
+
+
