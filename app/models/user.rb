@@ -4,12 +4,25 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  # validates :name,               presence: true
-  # validates :email,              presense: true
-  # validates :encrypted_password, presence: true
-  # validates :last_name,          presence: true
-  # validates :first_name,         presence: true
-  # validates :kana_last_name,     presence: true
-  # validates :kana_first_name,    presence: true
-  # validates :birth_day,          presence: true
+    with_options presence: true do
+      validates :name       
+      validates :password   
+      validates :birth_day      
+      
+      with_options format: { with: /\A[ぁ-んァ-ヶ一-龥]/, message: "is invalid. input full-width characters" } do
+       validates :last_name
+       validates :first_name
+      end
+      
+      with_options format: { with: /\A[ァ-ヶー－]+\z/, message: "is invalid. input full-width katakana characters" } do
+      validates :kana_last_name
+      validates :kana_first_name
+      end
+    end
+
+  PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
+  validates_format_of :password, with: PASSWORD_REGEX, message: 'には半角数字と半角英字の両方を含めて設定してください'  
+      
+  has_many :items
+  has_many :buys
 end
