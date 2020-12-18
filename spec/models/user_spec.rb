@@ -9,11 +9,6 @@ RSpec.describe User, type: :model do
       it 'nameとemailとpasswordとpassword_confirmationとlast_nameとfirst_nameとkana_last_nameとkana_first_nameとbirth_dayが存在すれば新規登録できる' do
         expect(@user).to be_valid
       end
-      it 'pawwrodが6文字以上で半角英数字があれば新規登録できる' do
-          @user.password = "a1a1a1"
-          @user.password_confirmation = "a1a1a1"
-          expect(@user).to be_valid
-      end
     end
 
     context '新規登録がうまくいかない時'do
@@ -26,6 +21,11 @@ RSpec.describe User, type: :model do
         @user.email = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
+      it 'emailに@が存在しないと新規登録できない' do
+        @user.email = "aaaexample"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it 'passwordが空だと新規登録できない' do
         @user.password = ""
@@ -61,6 +61,33 @@ RSpec.describe User, type: :model do
         @user.birth_day = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Birth day can't be blank")
+      end
+      it 'passwordは6文字以上でないと新規登録できない' do
+        @user.password = "aaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      end
+      it 'passwordは半角英数字混合出なければいけない' do
+        @user.password = "a1a1a1"
+        @user.valid?
+      end
+      it 'passwordは確認用も合わせて二回入力しないといけない' do
+
+      end
+      it 'ユーザー本名は全角（漢字、ひらがな、カタカナ）であること' do
+
+      end
+      it 'ユーザー名のフリガナは全角（カタカナ）であること' do
+
+      end
+      it '' do
+
+      end
+      it '' do
+
+      end
+      it '' do
+
       end
     end
   end
