@@ -16,15 +16,12 @@ class Item < ApplicationRecord
       validates :status_id
       validates :postage_id
       validates :day_id
-    end
-    with_options numericality: { other_than: 0 } do
       validates :area_id
     end
-
     validates :price, format: { with: /\A[0-9]+\z/, message: "is invalid. input harf-width characters."}
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range"}  
   end
   
-    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: ""}  
 
   belongs_to :user
   has_one :buy
