@@ -60,7 +60,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceは全角では保存できない' do
-        @item.price = ９９９
+        @item.price = "９９９"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid. input harf-width characters.", "Price is out of setting range")
       end
