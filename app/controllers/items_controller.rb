@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
   def edit
     if @item.user == current_user
       render :edit
-    else @item.user != current_user
+    else
       redirect_to root_path
     end
   end
