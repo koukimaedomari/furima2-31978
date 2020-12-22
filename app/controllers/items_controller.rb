@@ -21,6 +21,31 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def edit
+    if user_signed_in? && @item.user == current_user
+      render :edit
+    elsif @item.user != current_user
+      redirect_to root_path
+    else
+      redirect_to user_sessions_path
+    end
+  end
+
+  def update
+    
+    if @item.update(item_params)
+      redirect_to  item_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+
+  end
   private
 
   def item_params
