@@ -31,7 +31,7 @@
 - belongs_to :user
 - has_one :buy
 
-## buysテーブル
+## ordersテーブル
 
 | Column     | Type      | Options           |
 | ---------- | --------- | ----------------- |
@@ -42,7 +42,7 @@
 - belongs_to :user
 - has_one :residence
 
-## residencesテーブル
+## addressesテーブル
 
 | Column           | Type       | Options           |  
 | ---------------- | ---------- | ----------------- |
@@ -54,6 +54,6 @@
 | area_id          | integer    | null: false       |
 | buy              | reference  | foreign_key: true |
 
-- belongs_to :buy
+- belongs_to :order
 
 
