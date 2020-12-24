@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   end
   
   def create
-    # binding.pry
     @order = OrderCash.new(order_params)
     if @order.valid?
       pay_item
@@ -43,4 +42,3 @@ class OrdersController < ApplicationController
 
 end
 
-# .require(:order_cash)

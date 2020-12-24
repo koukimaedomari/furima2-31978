@@ -22,7 +22,7 @@ RSpec.describe OrderCash, type: :model do
         expect(@order.errors.full_messages).to include("Post number can't be blank","Post number code Input correctly")
       end
       it '郵便番号にハイフンがないときは保存できない' do
-        @order.post_number = 9060008
+        @order.post_number = '9060008'
         @order.valid?
         expect(@order.errors.full_messages).to include("Post number code Input correctly")
       end
@@ -64,6 +64,7 @@ RSpec.describe OrderCash, type: :model do
       it 'tokenが空であるときは保存できない' do
         @order.token = ""
         @order.valid?
+        binding.pry
         expect(@order.errors.full_messages).to include("Token can't be blank")
       end
     end
