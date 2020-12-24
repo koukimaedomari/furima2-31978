@@ -1,6 +1,6 @@
 class OrderCash 
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_number, :area_id, :city, :address, :build_name, :telephone_number, :order_id,:token
+  attr_accessor :user_id, :item_id, :post_number, :area_id, :city, :address, :build_name, :telephone_number, :token
 
   
   
@@ -12,6 +12,7 @@ class OrderCash
     validates :user_id
     validates :address
     validates :token, presence: { message: "can't be blank" }
+    validates :telephone_number
   end
   validates :telephone_number, format: {with: /\A\d{10,11}\z/, message: "number Input only number"}
   validates :post_number, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "code Input correctly"}
