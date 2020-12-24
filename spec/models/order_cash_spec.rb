@@ -64,7 +64,6 @@ RSpec.describe OrderCash, type: :model do
       it 'tokenが空であるときは保存できない' do
         @order.token = ""
         @order.valid?
-        binding.pry
         expect(@order.errors.full_messages).to include("Token can't be blank")
       end
     end
