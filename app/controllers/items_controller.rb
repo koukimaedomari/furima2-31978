@@ -25,10 +25,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user == current_user
+    if user_signed_in? && @item.user == current_user
       render :edit
-    else
+    elsif @item.user != current_user
       redirect_to root_path
+    else
+      redirect_to user_sessions_path
     end
   end
 
@@ -42,10 +44,10 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.user == current_user
+    if user_signed_in? && @item.user == current_user
       @item.destroy
       redirect_to root_path
-    else
+    elsif @item.user != current_user
       redirect_to root_path
     end
   end

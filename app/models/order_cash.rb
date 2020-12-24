@@ -11,7 +11,7 @@ class OrderCash
     validates :item_id
     validates :user_id
     validates :address
-    validates :token
+    validates :token, presence: { message: "can't be blank" }
   end
   # validates :build_name
   validates :telephone_number, format: {with: /\A\d{10,11}\z/, message: "number Input only number"}
