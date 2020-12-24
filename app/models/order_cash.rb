@@ -8,12 +8,12 @@ class OrderCash
   with_options presence: true do
     validates :post_number
     validates :city
-    validates :build_name
     validates :item_id
     validates :user_id
     validates :address
     validates :token
   end
+  # validates :build_name
   validates :telephone_number, format: {with: /\A\d{10,11}\z/, message: "number Input only number"}
   validates :post_number, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "code Input correctly"}
   validates :area_id, numericality: { other_than: 1, message: 'Select' }
